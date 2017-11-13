@@ -1,0 +1,614 @@
+//---------------------------------------------------------------------------
+#pragma hdrstop
+
+#include "c:\Work\Tournament\Calc\Common\clCostStack.h"
+#include "c:\Work\Tournament\Calc\Common\sitHoldem.h"
+
+char    *glSitHoldemName[CN_SIT]={"Чистая вода","Лимпы","Raise","2-Raise","Horror","Reply",};
+
+enTradeAction WhatTA(enAction act0,enAction act1);
+
+//---------------------------------------------------------------------------
+bool    PosInPosition(int pos1,int pos2)
+{
+    if(pos2==POS_BB) return pos1 != POS_SB;
+    if(pos2==POS_SB) return true;
+    if(pos1<=POS_SB) return false;
+    return pos1<pos2;
+}
+//---------------------------------------------------------------------------
+clStacks    SitHGetStacks(clHistTable *table)
+{
+    clStacks res;
+    res._bb=table->BigBlind();
+    for(int i=0;i<CN_PLAYER;i++)
+        if(table->IsPlayer(i))
+            res[i]=table->PlayerStack(i);
+        else
+            res[i]=0;
+    return res;
+}
+//---------------------------------------------------------------------------
+void clStacks::Norm(int sum)
+{
+    int sum1=Sum();
+    if(sum1==0) return;
+    double m=((double)sum)/sum1;
+    for(int i=0;i<CN_PLAYER;i++)
+        _arr[i]=_arr[i]*m+0.5;
+    sum1=Sum()-sum;
+    for(int i=0;i<abs(sum1);i++)
+        _arr[i]+=(sum1>0)? -1 : 1;
+}
+//---------------------------------------------------------------------------
+clDoubleCP clStacks::ClaccisCS(int cn)
+{
+    clDoubleCP res;
+    if(cn==-1) cn=CnPlayer();
+    for(int i=0;i<CN_PLAYER;i++)
+        res[i]=(i<cn)? glCostStack.CostStack(cn,i,_arr) : 0;
+    return res;
+}
+//---------------------------------------------------------------------------
+int     clStacks::CnPlayer()
+{
+    int cn=0;
+    for(int i=0;i<CN_PLAYER;i++)
+        if(_arr[i]==0)
+            return cn;
+        else
+            cn++;
+    return cn;
+}
+//---------------------------------------------------------------------------
+void    clStacks::MoveButton(int cnPl)
+{
+    int money=_arr[cnPl-1];
+    for(int i=cnPl-1;i>0;i--)
+        _arr[i]=_arr[i-1];
+    _arr[0]=money;
+}
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+AnsiString  SitHoldemSitToString(enSitName ns)
+{
+    return glSitHoldemName[ns];
+}
+//---------------------------------------------------------------------------
+clSitHoldem::clSitHoldem()
+{
+    _nbAct=-1;
+}
+//---------------------------------------------------------------------------
+void    clSitHoldem::Build(clGameHistory *ptrH,int nbAct)
+{
+    if(nbAct==-1)
+    {
+        for(nbAct=2;nbAct<ptrH->CnAct();nbAct++)
+            if(HistIsTradeAct(ptrH->GetAct(nbAct)->_dis._act))
+                break;
+    }
+/*    else
+        for(int i=2;i<nbAct;i++)
+            if(ptrH->GetAct(i)->_dis._act==ACT_DELFLOP)
+            {
+                nbAct=i;
+                break;
+            }
+*/
+    ExecHist(ptrH,nbAct);
+}
+//---------------------------------------------------------------------------
+/*void    clSitHoldem::Build(clShortSit *ss)
+{
+    SHBuildHistToStacks(PtrHistory(),ss->_stack);
+    ExecHist(CnAct());
+    for(int i=0;i<ss->_cnAct;i++)
+        this->ExecAct(ss->_arrAct[i]);
+    WrViewPlayer(_indicator);
+} */
+//---------------------------------------------------------------------------
+bool    clSitHoldem::FirstSit()
+{
+    int nbA=NbFirstTradeAct(0);
+    if(nbA==-1) return false;
+    ExecHist(nbA);
+    return true;
+}
+//---------------------------------------------------------------------------
+bool    clSitHoldem::NextSit()
+{
+    int nbA=this->NbFirstTradeAct(_nbAct);
+    if(nbA==-1) return false;
+    for(;_nbAct<nbA;_nbAct++)
+    {
+//        if(GetAct(_nbAct)->_dis._act==ACT_DELFLOP)
+//            return false;
+        this->ExecAct(_nbAct);
+    }
+    return true;
+}
+//---------------------------------------------------------------------------
+bool    clSitHoldem::NextSitPreFlop()
+{
+    int nbA=this->NbFirstTradeAct(_nbAct);
+    if(nbA==-1) return false;
+    for(;_nbAct<nbA;_nbAct++)
+    {
+        if(GetAct(_nbAct)->_dis._act==ACT_DELFLOP)
+            return false;
+        this->ExecAct(_nbAct);
+    }
+    return true;
+}
+//---------------------------------------------------------------------------
+void    clSitHoldem::SitForIndicator(int round)
+{
+    int ind=Position();
+    int nbA=NbTradeActPl(ind,0);
+    if(round==1)
+        nbA=NbTradeActPl(ind,nbA);
+    ExecHist(nbA);
+}
+//---------------------------------------------------------------------------
+enSitName   clSitHoldem::NameSit()
+{
+    if(RoundTrade()==1)
+    {
+        int cnR=CnRaiser();
+        switch(cnR)
+        {
+            case 0 : return (CnLimper()==0)? SIT_CLEARWATER : SIT_LIMP;
+            case 1 : return SIT_RAISE;
+            case 2 : return SIT_RAISE2;
+            default: return SIT_HORROR;
+        }
+    }
+    else
+        return SIT_REPLY;
+}
+//---------------------------------------------------------------------------
+tpDis   clSitHoldem::CreateDis(enAction act,int money)
+{
+    switch (act)
+    {
+        case ACT_FOLD :
+            if(MaxBet()==PlayerBank(Indicator()))
+                return HistCreateDis(ACT_CHECK,0);
+            return HistCreateDis(act,money);
+        case ACT_CALL :
+        {
+            int maxB=MaxBet();
+            maxB-=PlayerBank(Indicator());
+            if(maxB==0)
+                return HistCreateDis(ACT_CHECK,0);
+            maxB=(maxB>IndicatorMoney())? IndicatorMoney() : maxB;
+            return HistCreateDis(ACT_CALL,maxB);
+        }
+        case ACT_RAISE_TO :
+        {
+            int maxB=MaxBet();
+            if(money<maxB)
+                return CreateDis(ACT_CALL,0);
+
+            int moneyI=IndicatorMoney();
+            int bet=money-PlayerBank(Indicator());
+            if(bet>moneyI) bet=moneyI;
+            return HistCreateDis(ACT_RAISE,bet);
+        }
+        case ACT_ALL_IN :
+        {
+            int maxB=MaxBet();
+            int moneyI=IndicatorMoney();
+            maxB-=PlayerBank(Indicator());
+            if(moneyI<maxB)
+                return HistCreateDis(ACT_CALL,moneyI);
+//            if(this->CNPlayerIsCard()==2)
+//                return HistCreateDis(ACT_CALL,maxB);
+            return HistCreateDis(ACT_ALL_IN,moneyI);
+        }
+        default : return HistCreateDis(act,money);
+    }
+}
+//---------------------------------------------------------------------------
+tpDis   clSitHoldem::MinRaise()
+{
+    int maxB=MaxBet();
+    if(maxB<BigBlind()) maxB=BigBlind();
+    int moneyI=IndicatorMoney();
+    int bet=maxB-PlayerBank(Indicator());
+    if(bet>=moneyI)
+        return HistCreateDis(ACT_CALL,moneyI);
+    if(this->CNPlayerInTrade()==1)
+        return HistCreateDis(ACT_CALL,bet);
+    bet=2*maxB-PlayerBank(Indicator());
+    if(bet>=moneyI)
+        return HistCreateDis(ACT_ALL_IN,moneyI);
+    return HistCreateDis(ACT_RAISE,bet);
+}
+//---------------------------------------------------------------------------
+int     clSitHoldem::RoundTrade()
+{
+    int round=1;
+    for(int i=2;i<_nbAct;i++)
+    {
+        tpAction *act=GetAct(i);
+        if(HistIsTradeAct(act->_dis._act))
+            if(act->_pos==Indicator())
+                round++;
+    }
+    return round;
+}
+//---------------------------------------------------------------------------
+int     clSitHoldem::PosRaiser(int nb)
+{
+    tpAction arrAct[CN_PLAYER];
+    int cnR=CnRaiser(arrAct);
+    return (cnR<=nb)? POS_UNDEF : arrAct[nb]._pos;
+}
+//---------------------------------------------------------------------------
+int     clSitHoldem::CnRaiser(tpAction *arrAct)
+{
+    int cnR=0;
+    for(int i=2;i<_nbAct;i++)
+    {
+        tpAction *act=GetAct(i);
+        if(HistIsRaiseAct(act->_dis._act))
+            arrAct[cnR++]=*act;
+        if(act->_dis._act==ACT_CALL && cnR>0)
+            arrAct[cnR++]=*act;
+    }
+    return cnR;
+}
+//---------------------------------------------------------------------------
+int     clSitHoldem::CnRaiser()
+{
+    tpAction arrAct[CN_PLAYER];
+    return CnRaiser(arrAct);
+}
+//---------------------------------------------------------------------------
+int     clSitHoldem::CnLimper()
+{
+    int cnL=0;
+    for(int i=2;i<_nbAct;i++)
+    {
+        tpAction *act=GetAct(i);
+        if(HistIsRaiseAct(act->_dis._act))
+            return cnL;
+        if(act->_dis._act==ACT_CALL)
+            cnL++;
+    }
+    return cnL;
+}
+//---------------------------------------------------------------------------
+int     clSitHoldem::CnLimper(tpAction *arrAct)
+{
+    int cnL=0;
+    for(int i=2;i<_nbAct;i++)
+    {
+        tpAction *act=GetAct(i);
+        if(HistIsRaiseAct(act->_dis._act))
+            return cnL;
+        if(act->_dis._act==ACT_CALL)
+            arrAct[cnL++]=*act;
+    }
+    return cnL;
+}
+//---------------------------------------------------------------------------
+clStacks    clSitHoldem::GetEffStacks()
+{
+    clStacks res;
+    res._bb=100;
+    for(int i=0;i<CN_PLAYER;i++)
+        if(this->IsPlayer(i))
+            res[i]=this->EffStackPlayer(i);
+        else
+            res[i]=0;
+    return res;
+}
+//---------------------------------------------------------------------------
+double  clSitHoldem::HeroCSClassic()
+{
+    clStacks st;
+    st=GetStacks();
+    return glCostStack.CostStack(CnPlayer(),Position(),st._arr);
+}
+//---------------------------------------------------------------------------
+tpDis    clSitHoldem::ChangeDis(tpDis dis)
+{
+    int bet=dis._money+this->PlayerBank(this->Indicator());
+    switch(dis._act)
+    {
+        case ACT_RAISE_TO: bet=dis._money;dis._act=ACT_RAISE;
+        case ACT_RAISE  :
+            if(this->CNPlayerInTrade()==1)
+                dis._act=ACT_ALL_IN;
+            else if(dis._money>=this->IndicatorMoney())
+                dis._act=ACT_ALL_IN;
+            else if(bet>2*BigBlind())
+                dis._act=ACT_ALL_IN;
+            else
+            {
+                int max=0;
+                for(int i=0;i<CN_PLAYER;i++)
+                    if(i != Indicator() && this->PlayerIsCard(i))
+                        if(this->PlayerMoney(i)>max)
+                            max=PlayerMoney(i);
+                if(dis._money>=max)
+                    dis._act=ACT_ALL_IN;
+            }
+            break;
+        case ACT_CALL   :
+            if(this->CNPlayerInTrade()==1)
+                dis._act=ACT_ALL_IN;
+            else if(dis._money>=this->IndicatorMoney())
+                dis._act=ACT_ALL_IN;
+            else
+            {
+                int max=0;
+                for(int i=0;i<CN_PLAYER;i++)
+                    if(i != Indicator() && this->PlayerIsCard(i))
+                        if(this->PlayerMoney(i)>max)
+                            max=PlayerMoney(i);
+                if(dis._money>=max)
+                    dis._act=ACT_ALL_IN;
+            }
+            break;
+    }
+    return dis;
+}
+//---------------------------------------------------------------------------
+bool    clSitHoldem::IsEqualDis(tpDis dis1,tpDis dis2)
+{
+    if(dis1._act != ACT_RAISE && dis1._act==dis2._act) return true;
+    if(dis1._act==ACT_FOLD || dis2._act==ACT_FOLD) return false;
+    dis1=ChangeDis(dis1);
+    dis2=ChangeDis(dis2);
+    return dis1._act==dis2._act;
+}
+//---------------------------------------------------------------------------
+tpDis   clSitHoldem::CreateDisCallCheck()
+{
+    int bet=MaxBet()-_pl[_indicator]._bankPl;
+    return (bet==0)? HistCreateDis(ACT_CHECK,0) : HistCreateDis(ACT_CALL,bet);
+}
+//---------------------------------------------------------------------------
+bool    clSitHoldem::NoFold()
+{
+    int bet=MaxBet()-_pl[_indicator]._bankPl;
+    return (bet<_pl[_indicator]._bankPl);
+}
+//---------------------------------------------------------------------------
+int     clSitHoldem::EffStackSitForPlayer(int posH)
+{
+    if(!this->PlayerIsCard(posH)) return 0;
+    int res=PlayerStack(posH),max=0;
+    for(int i=0;i<CnPlayer();i++)
+        if(i != posH)
+            if(this->PlayerIsCard(i))
+                if(max<PlayerStack(i))
+                    max=PlayerStack(i);
+    return (res>max)? max : res;
+}
+//---------------------------------------------------------------------------
+int     clSitHoldem::TotalPotForIndicator()
+{
+    int pot=TotalPot();
+    int bankH=PlayerBank(Indicator());
+    for(int i=0;i<CN_PLAYER;i++)
+        if(this->PlayerIsCard(i))
+            if(PlayerBank(i)>bankH)
+                pot-=(PlayerBank(i)-bankH);
+    return pot;
+}
+//--------------------------------------------------------------------------
+int     clSitHoldem::MaxBetForIndicator()
+{
+    int bet=MaxBet();
+    return bet-PlayerBank(Indicator());
+}
+//--------------------------------------------------------------------------
+enTradeAction   clSitHoldem::TradeActionPlayer(int nbPl,enNameTrade t)
+{
+    int nbA=0;
+    switch(t)
+    {
+        case TRADE_FLOP : nbA=this->NbFirstAct(ACT_DELFLOP);break;
+        case TRADE_TURN : nbA=this->NbFirstAct(ACT_DELTURN);break;
+        case TRADE_RIVER: nbA=this->NbFirstAct(ACT_DELRIVER);break;
+    }
+    nbA=this->NbTradeActPl(nbPl,nbA);
+    if(nbA==-1) return TA_UNDEF;
+    enAction act0=GetAct(nbA)->_dis._act;
+    nbA=this->NbTradeActPl(nbPl,nbA);
+    enAction act1=(nbA==-1)? ACT_UNDEF : GetAct(nbA)->_dis._act;
+    enTradeAction ta=WhatTA(act0,act1);
+    if(t==TRADE_PREFLOP && ta==TA_CALL)
+        if(MaxBet()<=BigBlind()) ta=TA_LIMP;
+    return ta;
+}
+//--------------------------------------------------------------------------
+bool    clSitHoldem::BoardInPosition()
+{
+    int posI=Indicator();
+    for(int i=0;i<CnPlayer();i++)
+        if(i !=Indicator()  && PlayerIsCard(i))
+            if(!PosInPosition(posI,i))
+                return false;
+    return true;
+}
+//--------------------------------------------------------------------------
+bool    clSitHoldem::IsPlayerInAllIn()
+{
+    for(int i=0;i<CnPlayer();i++)
+        if(i !=Indicator()  && PlayerIsCard(i))
+            if(this->PlayerMoney(i)<BigBlind())
+                return true;
+    return false;
+}
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+bool    SitHoldemStacksForCallTogether(clStacks st)
+{
+    if(st.CnPlayer() != 3) return false;
+    int min=st[0];
+    for(int i=1;i<3;i++)
+        if(st[i]<min)
+            min=st[i];
+    return min<st._bb+st._bb/5;
+}
+//---------------------------------------------------------------------------
+bool    SitHoldemStacksForRaiseTogether(clStacks st)
+{
+    if(st.CnPlayer() != 3) return false;
+    int min=st[0];
+    for(int i=1;i<3;i++)
+        if(st[i]<min)
+            min=st[i];
+    int ante=st._bb/5;
+    if(min<2*st._bb+ante && min>st._bb+ante) return true;
+    if(st._bb==50 && (st[0]<3*st._bb+ante && st[0]>st._bb+ante)) return true;
+    return false;
+}
+//---------------------------------------------------------------------------
+bool    SitIsSitForCallTogether(clSitHoldem *sit)
+{
+    if(sit->CnPlayer() != 3) return false;
+    if(sit->CNPlayerIsCard() != 3) return false;
+//    if(sit->RoundTrade()> 1) return false;
+    int minPos=POS_BB;
+    for(int i=POS_SB;i<=POS_BUTTON;i++)
+        if(sit->EffStackPlayer(i)<sit->EffStackPlayer(minPos))
+            minPos=i;
+    if(sit->EffStackPlayer(minPos)>120) return false;
+    int posHero=sit->Indicator();
+    if(minPos==posHero) return false;
+    if(sit->MaxBet()>sit->BigBlind()) return false;
+/*    switch(posHero)
+    {
+        case POS_BUTTON : return true;
+        case POS_SB     :
+        {
+            int nbA=sit->NbFirstTradeAct(0);
+            return (nbA == -1 || sit->GetAct(nbA)->_dis._act == ACT_CALL);
+        }
+        default     :
+        {
+            int nbA=sit->NbFirstTradeAct(0);
+            if(sit->GetAct(nbA)->_dis._act != ACT_CALL) return false;
+            nbA=sit->NbFirstTradeAct(nbA);
+            if(nbA != -1 && sit->GetAct(nbA)->_dis._act != ACT_CALL) return false;
+            return true;
+        }
+    }
+*/
+    return true;
+}
+//---------------------------------------------------------------------------
+bool    SitIsSitForRaiseTogether(clSitHoldem *sit)
+{
+    if(sit->CnPlayer() != 3) return false;
+    if(sit->CNPlayerIsCard() != 3) return false;
+    if(sit->BigBlind()>=400) return false;
+    int minPos=POS_BB;
+    for(int i=POS_SB;i<=POS_BUTTON;i++)
+        if(sit->PlMoney(i)<sit->PlMoney(minPos))
+            minPos=i;
+    int posHero=sit->Indicator();
+    if(minPos==posHero) return false;
+    int minS=sit->EffStackPlayer(minPos);
+    bool rt=(minS<=220 && minS>120);
+    if(!rt)
+        rt=minPos==POS_BB && sit->BigBlind()==50 && minS<=320 && minS>120;
+    if(!rt) return false;
+    int bet=(minS<220)? 2*sit->BigBlind() : 3*sit->BigBlind();
+    if(sit->MaxBet()>bet) return false;
+    if(sit->EffStackIndicator()<420) return false;
+    return true;
+}
+//---------------------------------------------------------------------------
+bool    SitDisIsRaiseTogether(clSitHoldem *sit,tpDis dis)
+{
+    int bankPl=sit->PlayerBank(sit->Indicator())+dis._money;
+    return bankPl<=2*sit->BigBlind() || (sit->BigBlind()==50 && bankPl<3*sit->BigBlind());
+}
+//---------------------------------------------------------------------------
+void    SHBuildHistToStacks(clGameHistory *hist,clStacks st)
+{
+    hist->WrNbGame(0);
+    hist->WrBigBlinds(st._bb);
+    for(int i=0;i<CN_PLAYER;i++)
+        if(st[i]>0)
+        {
+            AnsiString as=(AnsiString)"player"+i;
+            hist->WrSeatInfo(i,as.c_str(),st[i],true);
+            hist->_atrHH._cnPl++;
+        }
+    hist->_atrHH._bb=st._bb;
+    hist->_atrHH._ante=st._bb/5;
+    int ante=hist->_atrHH._ante;
+    for(int i=0;i<CN_PLAYER;i++)
+        if(hist->IsPlayer(i))
+            hist->AddAct(i,ACT_POSTANTE,(st[i]>ante)? ante : st[i]);
+    int money=st[POS_SB]-ante;
+    if(money>0)
+        hist->AddAct(POS_SB,ACT_POSTSB,(money>st._bb/2)? st._bb/2 : money);
+    money=st[POS_BB]-ante;
+    if(money>0)
+        hist->AddAct(POS_BB,ACT_POSTBB,(money>st._bb)? st._bb : money);
+    hist->AddAct(NB_DILER,ACT_DELCARD,0);
+}
+//---------------------------------------------------------------------------
+enTradeAction WhatTA(enAction act0,enAction act1)
+{
+    if(act1==ACT_UNDEF)
+        switch(act0)
+        {
+            case ACT_CHECK : return TA_CHECK;
+            case ACT_CALL  : return TA_CALL;
+            case ACT_BET   : return TA_BET;
+            case ACT_RAISE_TO :
+            case ACT_RAISE : return TA_RAISE;
+            default : return TA_UNDEF;
+        }
+    switch(act0)
+    {
+        case ACT_CHECK :
+            switch(act1)
+            {
+                case ACT_FOLD  : return TA_CHECK_FOLD;
+                case ACT_CALL  : return TA_CHECK_CALL;
+                case ACT_RAISE_TO :
+                case ACT_RAISE : return TA_CHECK_RAISE;
+                case ACT_ALL_IN : return TA_CHECK_ALL_IN;
+            }
+            return TA_UNDEF;
+        case ACT_BET   :
+            switch(act1)
+            {
+                case ACT_FOLD  : return TA_BET_FOLD;
+                case ACT_CALL  : return TA_BET_CALL;
+                case ACT_RAISE_TO :
+                case ACT_RAISE : return TA_BET_RAISE;
+                case ACT_ALL_IN : return TA_BET_ALL_IN;
+            }
+            return TA_UNDEF;
+        case ACT_RAISE_TO :
+        case ACT_RAISE :
+            switch(act1)
+            {
+                case ACT_FOLD  : return TA_RAISE_FOLD;
+                case ACT_CALL  : return TA_RAISE_CALL;
+                case ACT_RAISE_TO :
+                case ACT_RAISE : return TA_RAISE_RAISE;
+                case ACT_ALL_IN : return TA_RAISE_ALL_IN;
+            }
+            return TA_UNDEF;
+        default : return TA_UNDEF;
+    }
+}
+//---------------------------------------------------------------------------
+
+#pragma package(smart_init)
