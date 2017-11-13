@@ -3,7 +3,7 @@
 #ifndef SeveralHandCmpH
 #define SeveralHandCmpH
 
-#include "C:\home\card\Hand.h"
+#include "..\..\card\Hand.h"
 
 
 struct stVerManyHandsOld

@@ -3,12 +3,12 @@
 
 #pragma once
 
-#include "C:\Home\Holdem\Strategy\AppTurnTree\Source\TreeBanks.h"
-#include "c:\home\Util\TemplateFileRec.h"
-#include "c:\home\Util\FileSwapping.h"
-#include "c:\home\Util\FileRec64.h"
-#include "c:\Home\NeuroNet\Common\NeuroNet.h"
-#include "C:\Home\Holdem\Strategy\AppFlopStrategy\Source\FlopTree.h"
+#include "..\..\AppTurnTree\Source\TreeBanks.h"
+#include "..\..\..\..\Util\TemplateFileRec.h"
+#include "..\..\..\..\Util\FileSwapping.h"
+#include "..\..\..\..\Util\FileRec64.h"
+#include "..\..\..\..\NeuroNet\NeuroNet.h"
+#include "FlopTree.h"
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 class clFlopBankUnit

@@ -1,7 +1,7 @@
 #ifndef ScanTableH
 #define ScanTableH
 #pragma once
-#include "C:\home\holdem\Common\sitHoldem.h"
+#include "..\include\holdem\Common\sitHoldem.h"
 enum enTypeTrnEx { ENTYPETRN_UNDEF };
 class tpScanTable
 {

@@ -3,7 +3,7 @@
 #ifndef GlobalsForCalcH
 #define GlobalsForCalcH
 //---------------------------------------------------------------------------
-#include "c:\home\card\naborCards.h"
+#include "..\..\card\naborCards.h"
 
 #define REG_NO_NABOR_TAB		0
 #define REG_STREET_TREE 		0b1

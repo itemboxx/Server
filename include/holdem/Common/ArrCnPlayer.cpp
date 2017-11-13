@@ -4,7 +4,7 @@
 
 #include <math.h>
 
-#include "C:\home\holdem\Common\ArrCnPlayer.h"
+#include "ArrCnPlayer.h"
 
 //---------------------------------------------------------------------------
 void    clDoubleCP::FillArr(tpFloat0 val)

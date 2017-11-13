@@ -12,8 +12,8 @@
 #include <io.h>
 #include <Windows.h>
 
-#include "c:\home\Util\errMessage.h"
-#include "c:\home\Util\FileRec.h"
+#include "errMessage.h"
+#include "FileRec.h"
 
 #define HEADER_KEY_CONSTREC      3328592
 #define HEADER_SIZE_CONSTREC     (3*sizeof(ulong))

@@ -3,13 +3,13 @@
 
 #pragma once
 
-#include "C:\home\holdem\Strategy\AppRiverTrees\Source\RiverTree.h"
-#include "c:\Home\Util\FileSwapping.h"
-#include "c:\home\Util\FileRec64.h"
-#include "c:\Home\Util\Matrix.h"
-#include "C:\Home\Holdem\Strategy\Source\defaultType.h"
-#include "c:\Home\NeuroNet\Common\NeuroNet.h"
-#include	"c:\\Home\\Util\\AnyType.h"
+#include "RiverTree.h"
+#include "..\..\..\..\Util\FileSwapping.h"
+#include "..\..\..\..\Util\FileRec64.h"
+#include "..\..\..\..\Util\Matrix.h"
+#include "..\..\Source\defaultType.h"
+#include "..\..\..\..\NeuroNet\NeuroNet.h"
+#include	"..\..\..\..\Util\\AnyType.h"
 
 #ifdef COMP_C
 #define	FILE_RIVER_PREPARE	"c:\\Data\\riverPrepare.bin"

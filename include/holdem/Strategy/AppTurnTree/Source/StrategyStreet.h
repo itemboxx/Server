@@ -6,15 +6,14 @@
 using namespace std;
 
 #include <vector>
-#include "C:\home\holdem\Strategy\Source\HandsGroupEX.h"
-#include "C:\home\holdem\Common\sitHoldem.h"
-#include "c:\home\util\clTree.h"
-#include "C:\home\Holdem\Common\HoldemTree.h"
-#include "C:\Home\Holdem\Strategy\AppTurnTree\Source\TurnTree.h"
-#include "C:\home\Holdem\Strategy\AppRiverTrees\Source\clRiverBanks.h"
-//#include "C:\home\Holdem\Strategy\AppTurnTree\Source\NodeBanks.h"
-#include "C:\home\Holdem\Strategy\AppTurnTree\Source\TreeBanks.h"
-#include "C:\Home\Holdem\Strategy\AppFlopStrategy\Source\FlopBanks.h"
+#include "..\..\Source\HandsGroupEX.h"
+#include "..\..\..\Common\sitHoldem.h"
+#include "..\..\..\..\util\clTree.h"
+#include "..\..\..\Common\HoldemTree.h"
+#include "TurnTree.h"
+#include "..\..\AppRiverTrees\Source\clRiverBanks.h"
+#include "TreeBanks.h"
+#include "..\..\AppFlopStrategy\Source\FlopBanks.h"
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 extern clRoot glHS;

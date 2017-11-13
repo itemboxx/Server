@@ -3,11 +3,11 @@
 
 #pragma once
 
-#include "C:\Home\Holdem\Strategy\AppTurnTree\Source\TurnTree.h"
-#include "c:\home\Util\TemplateFileRec.h"
-#include "c:\home\Util\FileSwapping.h"
-#include "c:\home\Util\FileRec64.h"
-#include "c:\Home\NeuroNet\Common\NeuroNet.h"
+#include "TurnTree.h"
+#include "..\..\..\..\Util\TemplateFileRec.h"
+#include "..\..\..\..\Util\FileSwapping.h"
+#include "..\..\..\..\Util\FileRec64.h"
+#include "..\..\..\..\NeuroNet\NeuroNet.h"
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 class clTreeBankUnit

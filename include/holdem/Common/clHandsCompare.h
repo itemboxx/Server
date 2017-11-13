@@ -3,9 +3,9 @@
 #ifndef clHandsCompareH
 #define clHandsCompareH
 
-#include "C:\home\card\pokGame.h"
-#include "C:\home\holdem\Common\HandsGroup.h"
-#include "C:\home\holdem\Common\SeveralHandCmp.h"
+#include "..\..\card\pokGame.h"
+#include "HandsGroup.h"
+#include "SeveralHandCmp.h"
 //---------------------------------------------------------------------------
 #define CN_HANDS_COMPARE (ALL_CN_HAND*ALL_CN_HAND)
 #define SIZE_HANDS_COMPARE  (CN_HANDS_COMPARE* sizeof(clRezCompare))

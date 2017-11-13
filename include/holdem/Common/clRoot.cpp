@@ -2,8 +2,8 @@
 #include <math.h>
 #include <time.h>
 
-#include "C:\home\Holdem\Common\clRoot.h"
-#include "c:\Home\Util\Sort.h"
+#include "clRoot.h"
+#include "..\..\Util\Sort.h"
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 size_t	clInComeDataRoot::SizeInFile()

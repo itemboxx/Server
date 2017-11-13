@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 #pragma hdrstop
 
-#include "c:\Home\Util\TemplateFileRec.h"
+#include "TemplateFileRec.h"
 
 //---------------------------------------------------------------------------
 size_t ReadBigBlock(int handle, void *ptr, size_t sizeA)

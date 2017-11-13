@@ -4,9 +4,9 @@
 #include <io.h>
 #include <math.h>
 
-#include "c:\Home\util\usefullProc.h"
-#include "c:\Home\Util\UtilForVect.h"
-#include "c:\Home\Util\errMessage.h"
+#include "usefullProc.h"
+#include "UtilForVect.h"
+#include "errMessage.h"
 
 //---------------------------------------------------------------------------
 void    VectDoubleWriteFile(vector<double> &vect,int handle)

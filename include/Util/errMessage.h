@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <memory.h>
 //#include <vcl>
-#include "c:\home\Util\WorkStr.h"
+#include "WorkStr.h"
 #include <atlstr.h>
 
 #define _CRTDBG_MAP_ALLOC

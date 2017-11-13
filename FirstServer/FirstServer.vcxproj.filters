@@ -13,6 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\card">
+      <UniqueIdentifier>{7697fe1d-89dd-47dc-bf28-f274c3890767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{e0b5f767-bfab-4b48-9fe5-3bb50a1ecc67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\holdem">
+      <UniqueIdentifier>{8131a349-6c2f-4fbc-a239-be90399a7b98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\holdem\common">
+      <UniqueIdentifier>{8392acae-d626-413c-8d99-064534c2d764}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\holdem\strategy">
+      <UniqueIdentifier>{5e18cdf8-f2d1-45c4-ae22-556c5f501a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\holdem\strategy\Source">
+      <UniqueIdentifier>{33c7ba6e-87b9-4da0-a0f6-6ba5860b6711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\holdem\strategy\FLop">
+      <UniqueIdentifier>{e4e917ea-3b86-455b-8d67-b4bddcb41d95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\holdem\strategy\Turn">
+      <UniqueIdentifier>{d7f1bb72-6ba7-406a-9566-80eeba2d1600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\holdem\strategy\River">
+      <UniqueIdentifier>{44c0e0a8-12c7-459d-aac1-7fe0f18884df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\holdem\strategy\Full">
+      <UniqueIdentifier>{0f1d8654-a8c8-457f-828a-214dabb15526}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util\neuro">
+      <UniqueIdentifier>{921971b9-f72c-43d7-9326-40768e680a4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -36,27 +69,12 @@
     <ClInclude Include="MySocket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\holdem\Common\History.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\holdem\Common\sitHoldem.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AppViewerDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tpScanTable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\util\Clasters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FirstServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FirstServerDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -65,137 +83,155 @@
     <ClCompile Include="MySocket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\History.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\sitHoldem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\util\errMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\util\WorkStr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\ArrCnPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\card\Card.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\card\clCol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\card\Hand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\card\pokGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\util\cTimeData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tpScanTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="clValidateServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\util\FileRec.cpp">
+    <ClCompile Include="..\include\card\naborCards.cpp">
+      <Filter>Source Files\card</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\card\pokGame.cpp">
+      <Filter>Source Files\card</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\card\Card.cpp">
+      <Filter>Source Files\card</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\card\clCol.cpp">
+      <Filter>Source Files\card</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\card\Hand.cpp">
+      <Filter>Source Files\card</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\FileRec64.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\FileSwapping.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\Matrix.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\Sort.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\TemplateFileRec.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\usefullProc.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\WorkStr.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\AnyTemplate.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\cTimeData.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\errMessage.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\Util\FileRec.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="AppViewerDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\GlobalsForCalc.cpp">
+    <ClCompile Include="..\include\Util\UtilForVect.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstServerDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\card\naborCards.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\ArrCnPlayer.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Util\TemplateFileRec.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\BoardGames.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Util\usefullProc.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\clHandsCompare.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Util\UtilForVect.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\clRoot.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Util\WorkDir.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\FlopAllIn.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\SeveralHandCmp.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\Source\CalcSitEV.cpp">
+      <Filter>Source Files\holdem\strategy\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\clHandsCompare.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\Source\ClastersBoard.cpp">
+      <Filter>Source Files\holdem\strategy\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\Source\StrategyPlay.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\Source\defaultType.cpp">
+      <Filter>Source Files\holdem\strategy\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\Source\ClastersBoard.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\AppRiverTrees\Source\clRiverBanks.cpp">
+      <Filter>Source Files\holdem\strategy\River</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\Source\Strategy.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\AppFlopStrategy\Source\FlopBanks.cpp">
+      <Filter>Source Files\holdem\strategy\FLop</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\Source\CalcSitEV.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\AppFlopStrategy\Source\FlopTree.cpp">
+      <Filter>Source Files\holdem\strategy\FLop</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\Source\TreeOnFile.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\AppFullTree\Source\FullTree.cpp">
+      <Filter>Source Files\holdem\strategy\Full</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Util\IntDiap.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\GlobalsForCalc.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\PSReadHistory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\HandsGroup.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\Source\HandsGroupEx.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\Source\HandsGroupEx.cpp">
+      <Filter>Source Files\holdem\strategy\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\HandsGroup.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\History.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\Source\StrategyPlayEx.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\holdemtree.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\AppTurnTree\Source\TreeBanks.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\PSReadHistory.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\AppTurnTree\Source\TurnTree.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\SeveralHandCmp.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\HoldemTree.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Common\sitHoldem.cpp">
+      <Filter>Source Files\holdem\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\clRoot.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\AppRiverTrees\Source\RiverTree.cpp">
+      <Filter>Source Files\holdem\strategy\River</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\AppRiverTrees\Source\clRiverBanks.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\AppTurnTree\Source\TurnTree.cpp">
+      <Filter>Source Files\holdem\strategy\Turn</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\AppRiverTrees\Source\RiverTree.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\AppTurnTree\Source\TreeBanks.cpp">
+      <Filter>Source Files\holdem\strategy\Turn</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\NeuroNet\Common\NeuroNet.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\AppTurnTree\Source\StrategyStreet.cpp">
+      <Filter>Source Files\holdem\strategy\Turn</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\NeuroNet\Common\Population.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\Source\Strategy.cpp">
+      <Filter>Source Files\holdem\strategy\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\AppFullTree\Source\FullTree.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\Source\StrategyPlay.cpp">
+      <Filter>Source Files\holdem\strategy\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\AppTurnTree\Source\StrategyStreet.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\Source\StrategyPlayEx.cpp">
+      <Filter>Source Files\holdem\strategy\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Common\FlopAllin.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\holdem\Strategy\Source\TreeOnFile.cpp">
+      <Filter>Source Files\holdem\strategy\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\AppFlopStrategy\Source\FlopTree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\holdem\Strategy\AppFlopStrategy\Source\FlopBanks.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\include\NeuroNet\NeuroNet.cpp">
+      <Filter>Source Files\util\neuro</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

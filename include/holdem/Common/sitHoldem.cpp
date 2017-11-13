@@ -2,7 +2,7 @@
 //#include "stdafx.h"
 #pragma hdrstop
 
-#include "C:\home\holdem\Common\sitHoldem.h"
+#include "sitHoldem.h"
 
 char    *glSitHoldemName[CN_SIT] = { "Чистая вода","Лимпы","Raise","2-Raise","Horror","Reply", };
 

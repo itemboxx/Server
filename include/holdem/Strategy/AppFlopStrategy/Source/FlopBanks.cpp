@@ -1,8 +1,8 @@
 //#include "stdafx.h"
 #include <time.h>
 
-#include "C:\Home\Holdem\Strategy\AppFlopStrategy\Source\FlopBanks.h"
-#include "C:\home\Holdem\Strategy\AppRiverTrees\Source\clRiverBanks.h"
+#include "FlopBanks.h"
+#include "..\..\AppRiverTrees\Source\clRiverBanks.h"
 
 clFlopBank glBankFlop;
 

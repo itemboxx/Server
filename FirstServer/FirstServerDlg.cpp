@@ -6,10 +6,10 @@
 #include "FirstServer.h"
 #include "FirstServerDlg.h"
 #include "afxdialogex.h"
-#include "c:\home\Util\FileRec.h"
-#include "C:\home\holdem\Common\GlobalsForCalc.h"
-#include "C:\home\holdem\Strategy\\Source\StrategyPlay.h"
-#include "C:\home\holdem\Strategy\Source\StrategyPlayEx.h"
+#include "..\include\Util\FileRec.h"
+#include "..\include\holdem\Common\GlobalsForCalc.h"
+#include "..\include\holdem\Strategy\\Source\StrategyPlay.h"
+#include "..\include\holdem\Strategy\Source\StrategyPlayEx.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -141,10 +141,6 @@ void CFirstServerDlg::OnPaint()
 	{
 		CDialogEx::OnPaint();
 	}
-}
-CAppViewerDlg *CFirstServerDlg::FindTable(tpScanTable &table, bool createNew)
-{
-	return NULL;
 }
 void CFirstServerDlg::CheckOpenSocket()
 {

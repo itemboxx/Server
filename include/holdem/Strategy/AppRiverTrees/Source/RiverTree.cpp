@@ -1,13 +1,13 @@
 #include <math.h>
 #include <time.h>
 
-#include "c:\home\card\naborCards.h"
-#include "C:\home\holdem\Strategy\AppRiverTrees\Source\CalcResTable.h"
-#include "C:\home\holdem\Strategy\AppRiverTrees\Source\RiverTree.h"
-#include "c:\home\Util\TemplateFileRec.h"
-#include "c:\Home\Util\Sort.h"
-#include "c:\home\util\Clasters.h"
-#include "c:\home\util\AnyType.h"
+#include "..\..\..\..\\card\naborCards.h"
+#include "CalcResTable.h"
+#include "RiverTree.h"
+#include "..\..\..\..\Util\TemplateFileRec.h"
+#include "..\..\..\..\Util\Sort.h"
+#include "..\..\..\..\util\Clasters.h"
+#include "..\..\..\..\util\AnyType.h"
 
 #define	CN_RIVERDAT_UNIT	78
 class clRiverDatDat

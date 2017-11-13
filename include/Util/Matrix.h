@@ -4,7 +4,7 @@
 #define MATRIX_H
 //---------------------------------------------------------------------------
 //#include "c:\Home\Util\Matrix.h"
-#include "c:\\Home\\Util\\errMessage.h"
+#include "errMessage.h"
 
 template <class T> class clMatrix
 {

@@ -6,17 +6,17 @@
 using namespace std;
 
 #include <vector>
-#include "C:\home\holdem\Strategy\Source\HandsGroupEX.h"
-#include "C:\home\holdem\Common\sitHoldem.h"
-#include "c:\home\util\clTree.h"
-#include "C:\home\Holdem\Common\clRoot.h"
+#include "..\..\Source\HandsGroupEX.h"
+#include "..\..\..\Common\sitHoldem.h"
+#include "..\..\..\..\util\clTree.h"
+#include "..\..\..\Common\clRoot.h"
 //#include "C:\Home\Holdem\Strategy\AppTurnTree\Source\TurnNode.h"
 
 #define	NB_NODE
 #define	TURN_FULLTREE
 
 #ifdef TURN_FULLTREE
-#include "C:\Home\Holdem\Strategy\AppFullTree\Source\FullTree.h"
+#include "..\..\AppFullTree\Source\FullTree.h"
 #endif
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------

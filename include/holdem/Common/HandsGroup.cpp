@@ -8,8 +8,8 @@
 #include <sys\stat.h>
 #include <share.h>
 
-#include "C:\home\util\WorkStr.h"
-#include "C:\home\holdem\Common\HandsGroup.h"
+#include "..\..\util\WorkStr.h"
+#include "HandsGroup.h"
 
 //---------------------------------------------------------------------------
 void    clGroupHands::operator +=(clGroupHands &gh)

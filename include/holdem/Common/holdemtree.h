@@ -6,11 +6,11 @@
 using namespace std;
 
 #include <vector>
-#include "C:\home\holdem\Common\sitHoldem.h"
-#include "c:\Home\Util\Matrix.h"
-#include "c:\home\util\clTree.h"
-#include "C:\home\holdem\Strategy\Source\HandsGroupEX.h"
-#include "C:\home\holdem\Strategy\Source\defaultType.h"
+#include "sitHoldem.h"
+#include "..\..\Util\Matrix.h"
+#include "..\..\util\clTree.h"
+#include "..\Strategy\Source\HandsGroupEX.h"
+#include "..\Strategy\Source\defaultType.h"
 
 #define VIEW_PARAM
 //#define	TEST_GROUPvsGROUP

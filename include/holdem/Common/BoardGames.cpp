@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 #pragma hdrstop
 
-#include "c:\home\holdem\Common\BoardGames.h"
+#include "BoardGames.h"
 //---------------------------------------------------------------------------
 clHandValue::clHandValue()
 {

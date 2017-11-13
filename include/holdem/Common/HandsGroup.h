@@ -4,8 +4,8 @@
 #define HandsGroupH
 
 #include <vector>
-#include "c:\home\Util\WorkStr.h"
-#include "C:\home\card\Hand.h"
+#include "..\..\Util\WorkStr.h"
+#include "..\..\card\Hand.h"
 //#include "clHandsCompare.h"
 
 //#define GH_TEST

@@ -3,7 +3,7 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include "c:\home\util\usefullProc.h"
+#include "usefullProc.h"
 
 //---------------------------------------------------------------------------
 void    SortArr(int cn,double *arr)

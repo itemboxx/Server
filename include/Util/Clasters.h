@@ -4,9 +4,9 @@
 #define ClastersH
 //---------------------------------------------------------------------------
 //#include "c:\home\util\Clasters.h"
-#include "c:\Home\Util\TemplateFileRec.h"
-#include "c:\Home\util\clTree.h"
-#include "c:\Home\util\Sort.h"
+#include "TemplateFileRec.h"
+#include "clTree.h"
+#include "Sort.h"
 
 #include <vector>
 using namespace std;

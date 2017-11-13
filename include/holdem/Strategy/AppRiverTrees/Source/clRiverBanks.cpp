@@ -1,7 +1,7 @@
 //#include "stdafx.h"
 #include <algorithm>
-#include "C:\home\Holdem\Strategy\AppRiverTrees\Source\clRiverBanks.h"
-#include "c:\Home\Util\Clasters.h"
+#include "clRiverBanks.h"
+#include "..\..\..\..\Util\Clasters.h"
 
 double MAX_NEAR_DIST = 0.2;
 clRiverBanks glBankRiver;

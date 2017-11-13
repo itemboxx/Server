@@ -2,10 +2,10 @@
 #include <math.h>
 #include <time.h>
 
-#include "C:\home\Holdem\Common\HoldemTree.h"
-#include "c:\home\Util\TemplateFileRec.h"
-#include "c:\Home\Util\Sort.h"
-#include "C:\home\holdem\Common\clHandsCompare.h"
+#include "HoldemTree.h"
+#include "..\..\Util\TemplateFileRec.h"
+#include "..\..\Util\Sort.h"
+#include "clHandsCompare.h"
 
 enNameTrade glTradeNodeCalc = TRADE_UNDEF;
 

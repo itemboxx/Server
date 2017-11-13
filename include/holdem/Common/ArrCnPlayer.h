@@ -3,7 +3,7 @@
 #ifndef ArrCnPlayerH
 #define ArrCnPlayerH
 //---------------------------------------------------------------------------
-#include "C:\home\holdem\Common\History.h"
+#include "History.h"
 
 class clDoubleCP
 {

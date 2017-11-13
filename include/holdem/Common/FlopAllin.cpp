@@ -2,9 +2,9 @@
 //#include "stdafx.h"
 #pragma hdrstop
 
-#include "C:\home\holdem\Common\FlopAllIn.h"
-#include "C:\home\card\Hand.h"
-#include "c:\home\card\naborCards.h"
+#include "FlopAllIn.h"
+#include "..\..\card\Hand.h"
+#include "..\..\card\naborCards.h"
 
 vector <float>	glVectFlopAllin;
 

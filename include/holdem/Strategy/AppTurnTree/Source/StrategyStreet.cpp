@@ -2,10 +2,10 @@
 #include <time.h>
 
 //#include "C:\home\holdem\Strategy\Source\CalcResLeaf.h"
-#include "c:\home\card\naborCards.h"
-#include "C:\Home\Holdem\Strategy\AppTurnTree\Source\StrategyStreet.h"
-#include "c:\home\Util\TemplateFileRec.h"
-#include "c:\Home\Util\Sort.h"
+#include "..\..\..\..\card\naborCards.h"
+#include "StrategyStreet.h"
+#include "..\..\..\..\Util\TemplateFileRec.h"
+#include "..\..\..\..\Util\Sort.h"
 
 clRoot glHS;
 clStrategyH glStrategy;

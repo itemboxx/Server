@@ -4,7 +4,7 @@
 #define BoardGamesH
 //---------------------------------------------------------------------------
 //#include "c:\NewWork\Calc\Common\sitHoldem.h"
-#include "c:\home\card\pokGame.h"
+#include "..\..\card\pokGame.h"
 //#include "afxdialogex.h"
 
 enum enParamHV_1  {PHV1_TWO_OVER=0,/**/PHV1_ONE_OVER,/**/PHV1_NO_OVER,                                      // NO_PAIR

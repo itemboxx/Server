@@ -11,7 +11,7 @@
 #include <sys\stat.h>
 #include <stdlib.h>
 #include <afxwin.h>
-#include "c:\\Home\\Util\\errMessage.h"
+#include "errMessage.h"
 
 #define FILE_FOR_TRASSER "C:\\WORK\\UTIL\\TRASSER\\trass"
 //#define FILE_FOR_TRASSER "\\\\192.168.0.33\\share\\trasser\\trass"

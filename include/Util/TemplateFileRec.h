@@ -3,7 +3,7 @@
 #ifndef TemplateFileRecH
 #define TemplateFileRecH
 //---------------------------------------------------------------------------
-#include "c:\Home\Util\errMessage.h"
+#include "errMessage.h"
 #include <fcntl.h>
 //#include <alloc.h>
 #include <sys\stat.h>

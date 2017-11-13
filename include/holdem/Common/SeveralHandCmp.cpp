@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 //#include "stdafx.h"
 #pragma hdrstop
-#include "C:\home\holdem\Common\SeveralHandCmp.h"
+#include "SeveralHandCmp.h"
 #include <io.h>
 #include <fcntl.h>
 //#include <time.h>

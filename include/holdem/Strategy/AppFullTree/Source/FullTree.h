@@ -6,10 +6,10 @@
 using namespace std;
 
 #include <vector>
-#include "C:\home\holdem\Strategy\Source\HandsGroupEX.h"
-#include "c:\home\util\clTree.h"
-#include "C:\home\Holdem\Common\HoldemTree.h"
-#include "C:\home\Holdem\Common\clRoot.h"
+#include "..\..\Source\HandsGroupEX.h"
+#include "..\..\..\..\util\clTree.h"
+#include "..\..\..\Common\HoldemTree.h"
+#include "..\..\..\Common\clRoot.h"
 
 /*struct tpDisNode
 {

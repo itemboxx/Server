@@ -13,8 +13,8 @@
 #include <errno.h>
 #include <afxwin.h>
 
-#include "C:\home\card\clCol.h"
-#include "C:\home\holdem\Common\clHandsCompare.h"
+#include "..\..\card\clCol.h"
+#include "clHandsCompare.h"
 
 clHandsCompare glHandCmp;
 clListCompare glListCmp;

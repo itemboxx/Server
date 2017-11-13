@@ -6,11 +6,11 @@
 using namespace std;
 
 #include <vector>
-#include "C:\home\holdem\Strategy\Source\HandsGroupEX.h"
-#include "C:\home\holdem\Common\sitHoldem.h"
-#include "C:\home\Holdem\Common\clRoot.h"
-#include "c:\Home\NeuroNet\Common\NeuroNet.h"
-#include "C:\Home\Holdem\Strategy\AppTurnTree\Source\TurnTree.h"
+#include "..\..\Source\HandsGroupEX.h"
+#include "..\..\..\Common\sitHoldem.h"
+#include "..\..\..\Common\clRoot.h"
+#include "..\..\..\..\NeuroNet\NeuroNet.h"
+#include "..\..\AppTurnTree\Source\TurnTree.h"
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 #define CN_FLOP_STANDART	10

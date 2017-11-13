@@ -3,9 +3,9 @@
 #ifndef HistoryH
 #define HistoryH
 #include <windows.system.h>
-#include "c:\Home\Util\cTimeData.h"
-#include "c:\Home\Util\workstr.h"
-#include "c:\Home\card\pokGame.h"
+#include "..\..\Util\cTimeData.h"
+#include "..\..\Util\workstr.h"
+#include "..\..\card\pokGame.h"
 //---------------------------------------------------------------------------
 #define CN_PLAYER                   6
 #define MAX_CN_PLAYER               10

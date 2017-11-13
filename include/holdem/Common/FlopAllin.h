@@ -5,7 +5,7 @@
 
 #include <vector>
 using namespace std;
-#include "c:\home\card\Hand.h"
+#include "..\..\card\Hand.h"
 
 extern vector <float>	glVectFlopAllin;
 

@@ -12,8 +12,8 @@
 #include <io.h>
 #include <Windows.h>
 
-#include "c:\home\Util\errMessage.h"
-#include "c:\home\Util\FileRec64.h"
+#include "errMessage.h"
+#include "FileRec64.h"
 
 #define HEADER_KEY_CONSTREC      3328592
 #define HEADER_SIZE_CONSTREC     (sizeof(int)+2*sizeof(__int64))

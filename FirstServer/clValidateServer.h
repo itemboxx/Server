@@ -3,8 +3,8 @@
 #define ValidateServer
 #include <map>
 #include <vector>
-#include "C:\home\holdem\common\sitHoldem.h"
-#include "c:\Home\Util\TemplateFileRec.h"
+#include "..\include\holdem\common\sitHoldem.h"
+#include "..\include\Util\TemplateFileRec.h"
 
 
 enum enNbError { AllIsGood, ERR_CNPL, ERR_MXSEAT, ERR_TABLECOST, ERR_BB, ERR_ANTE, ERR_NBTRNY, ERR_NBG ,

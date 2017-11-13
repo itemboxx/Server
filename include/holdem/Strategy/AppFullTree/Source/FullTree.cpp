@@ -1,14 +1,14 @@
 #include <math.h>
 #include <time.h>
 
-#include "c:\home\card\naborCards.h"
-#include "C:\Home\Holdem\Strategy\AppFullTree\Source\FullTree.h"
-#include "c:\home\Util\TemplateFileRec.h"
-#include "c:\Home\Util\Sort.h"
-#include "c:\home\holdem\Common\clHandsCompare.h"
+#include "..\..\..\..\card\naborCards.h"
+#include "FullTree.h"
+#include "..\..\..\..\Util\TemplateFileRec.h"
+#include "..\..\..\..\Util\Sort.h"
+#include "..\..\..\Common\clHandsCompare.h"
 //#include "C:\home\holdem\Strategy\AppRiverTrees\Source\RiverTree.h"
 //#include "C:\home\Holdem\Strategy\AppTurnTree\Source\clTurnBanks.h"
-#include "C:\home\holdem\Strategy\Source\ClastersBoard.h"
+#include "..\..\Source\ClastersBoard.h"
 
 char *glNameTurnClasters[] = { "Turn1600K.bin" ,"Turn309K.bin" ,"Turn122K.bin" ,"Turn30K.bin" ,"Turn10K.bin" ,"Turn3K.bin","Turn1500.bin" };
 int	 glSizeTurnClasters[] = { 1600000, 309000 ,122000 ,30000 ,10000 ,3000, 1500 };

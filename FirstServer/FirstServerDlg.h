@@ -8,7 +8,6 @@
 #include "resource.h"
 #include "MySocket.h"
 #include "tpScanTable.h"
-#include "AppViewerDlg.h"
 #include "clValidateServer.h"
 #include "afxwin.h"
 // CFirstServerDlg dialog
@@ -41,7 +40,6 @@ public:
 	void OnReceive(CMySocket *socket);
 	void OnReceive2();
 	void S_Close(CMySocket *socket);
-	CAppViewerDlg *FindTable(tpScanTable &table, bool createNew);
 	int glCnSocket;
 	int cnUndeff, cnError;
 	std::vector<tpDis *> glDisBuf;
@@ -52,7 +50,6 @@ public:
 	void CheckOpenSocket();
 	CMySocket m_pConnectToMainServerSocket; //Передающий сокет
 	afx_msg void OnBnClickedButton1();
-	CAppViewerDlg *_arrForm[MAIN_MAX_FORM];
 	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnClose();

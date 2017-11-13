@@ -1,9 +1,9 @@
 //#include "stdafx.h"
 #include <time.h>
 
-#include "C:\home\Holdem\Strategy\AppTurnTree\Source\TreeBanks.h"
-#include "c:\Home\Util\Clasters.h"
-#include "C:\home\Holdem\Strategy\AppRiverTrees\Source\clRiverBanks.h"
+#include "TreeBanks.h"
+#include "..\..\..\..\Util\Clasters.h"
+#include "..\..\AppRiverTrees\Source\clRiverBanks.h"
 
 clTreeBank glBankTurn;
 

@@ -3,7 +3,7 @@
 #ifndef CalcResTableH
 #define CalcResTableH
 //---------------------------------------------------------------------------
-#include "C:\home\holdem\Common\sitHoldem.h"
+#include "..\..\..\Common\sitHoldem.h"
 
 class clCalcResTable
 {

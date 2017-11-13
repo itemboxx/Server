@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <io.h>
 
-#include "c:\home\Util\WorkStr.h"
+#include "WorkStr.h"
 
 #define MAX_LEN_WORD    31
 

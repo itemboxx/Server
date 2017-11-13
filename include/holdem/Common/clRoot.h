@@ -6,8 +6,8 @@
 using namespace std;
 
 #include <vector>
-#include "C:\home\Holdem\Common\HoldemTree.h"
-#include "C:\home\holdem\Strategy\Source\defaultType.h"
+#include "HoldemTree.h"
+#include "..\Strategy\Source\defaultType.h"
 
 class clInComeDataRoot
 {

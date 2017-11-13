@@ -1,18 +1,18 @@
 #include <math.h>
 #include <time.h>
 
-#include "c:\home\card\naborCards.h"
-#include "C:\Home\Holdem\Strategy\AppTurnTree\Source\TurnTree.h"
-#include "C:\Home\Holdem\Strategy\AppFlopStrategy\Source\FlopTree.h"
-#include "c:\home\Util\TemplateFileRec.h"
-#include "c:\Home\Util\Sort.h"
-#include "C:\home\holdem\Common\FlopAllIn.h"
-#include "C:\home\Holdem\Strategy\AppTurnTree\Source\TreeBanks.h"
-#include "c:\home\util\Clasters.h"
-#include "C:\home\Holdem\Strategy\AppRiverTrees\Source\clRiverBanks.h"
-#include "c:\Home\Util\Matrix.h"
-#include "c:\Home\Util\AnyType.h"
-#include "c:\Home\Util\AnyTemplate.h"
+#include "..\..\..\..\card\naborCards.h"
+#include "..\..\\AppTurnTree\Source\TurnTree.h"
+#include "FlopTree.h"
+#include "..\..\..\..\Util\TemplateFileRec.h"
+#include "..\..\..\..\Util\Sort.h"
+#include "..\..\..\Common\FlopAllIn.h"
+#include "..\..\AppTurnTree\Source\TreeBanks.h"
+#include "..\..\..\..\util\Clasters.h"
+#include "..\..\AppRiverTrees\Source\clRiverBanks.h"
+#include "..\..\..\..\Util\Matrix.h"
+#include "..\..\..\..\Util\AnyType.h"
+#include "..\..\..\..\Util\AnyTemplate.h"
 
 //bool glTurnDatNew = true;
 

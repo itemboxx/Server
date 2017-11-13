@@ -8,12 +8,12 @@
 #include <share.h>
 #include <afxwin.h>
 
-#include "C:\home\holdem\Common\GlobalsForCalc.h"
-#include "C:\home\holdem\Common\clHandsCompare.h"
-#include "C:\home\holdem\Common\SeveralHandCmp.h"
-#include "C:\home\holdem\Strategy\Source\HandsGroupEX.h"
-#include "C:\home\holdem\Common\FlopAllIn.h"
-#include "C:\home\Util\errMessage.h"
+#include "GlobalsForCalc.h"
+#include "clHandsCompare.h"
+#include "SeveralHandCmp.h"
+#include "..\Strategy\Source\HandsGroupEX.h"
+#include "FlopAllIn.h"
+#include "..\..\Util\errMessage.h"
 
 //#define	FILE_FLOP_ALLIN		"c:\\data\\flopAllin.bin"
 

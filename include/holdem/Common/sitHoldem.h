@@ -3,9 +3,9 @@
 #ifndef sitHoldemH
 #define sitHoldemH
 //---------------------------------------------------------------------------
-#include "C:\home\holdem\Common\ArrCnPlayer.h"
-#include "C:\home\holdem\Common\History.h"
-#include "C:\home\card\clCol.h"
+#include "ArrCnPlayer.h"
+#include "History.h"
+#include "..\..\card\clCol.h"
 
 //#define OLDVER       
 

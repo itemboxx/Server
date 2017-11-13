@@ -6,10 +6,10 @@
 using namespace std;
 
 #include <vector>
-#include "C:\home\holdem\Common\sitHoldem.h"
-#include "C:\home\Holdem\Common\HoldemTree.h"
-#include "c:\Home\Util\Matrix.h"
-#include "C:\home\Holdem\Common\clRoot.h"
+#include "..\..\..\Common\sitHoldem.h"
+#include "..\..\..\Common\HoldemTree.h"
+#include "..\..\..\..\Util\Matrix.h"
+#include "..\..\..\Common\clRoot.h"
 
 class clRootRiverTree;
 

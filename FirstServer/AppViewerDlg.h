@@ -3,7 +3,7 @@
 #include "resource.h"
 #include "tpScanTable.h"
 // CAppViewerDlg dialog
-#include "C:\home\holdem\Common\SitHoldem.h"
+#include "..\include\holdem\Common\SitHoldem.h"
 #include <vector>
 
 class CAppViewerDlg : public CDialogEx

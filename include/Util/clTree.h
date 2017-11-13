@@ -7,7 +7,7 @@ typedef void * (*tpPtrFuncTree)(void *ptr);
 typedef void  (*tpPtrFuncCopyTree)(void *dest,void *src);
 
 #include <io.h>
-#include "c:\home\Util\WorkStr.h"
+#include "WorkStr.h"
 
 #define MAX_CN_BRANCH   8
 
